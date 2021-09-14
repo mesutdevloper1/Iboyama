@@ -7,7 +7,7 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
+import org.openqa.selenium.interactions.touch.TouchActions;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,29 +38,44 @@ public class IpaintStepDefs {
 
 
 
-
-    @Given("^user see <X>|<page>$")
-    public void user_see_X_button(String something) {
-
+    @Given("^user see <page>$")
+    public void user_see_page(String page) {
+        List<MobileElement> elementsOne = (List<MobileElement>) driver.findElementsByAccessibilityId("page");
+    }
+    @Given("^user see <X>$")
+    public void user_see_X_button(String X) {
+        List<MobileElement> elementsOne = (List<MobileElement>) driver.findElementsByAccessibilityId("X");
     }
 
     @Given("^user click <page>$")
-    public void user_click() {
+    public void user_click(String element) {
+        TouchActions action = new TouchActions(driver);
+        action.singleTap(element);
+        action.perform();
 
     }
     @When("^user click <X> button$")
-    public void X_btn() {
+    public void X_btn(String Id) {
+        MobileElement el = driver.findElementByAccessibilityId("Id");
+        el.click();
+
+
     }
+
     @Then("^wait <x> second$")
     public void wait_time(int x) {
-
+        driver.manage().timeouts().implicitlyWait(x, TimeUnit.SECONDS);
     }
     @And("^user click x={X} y={Y} screen")
     public void click_here(int X,int Y) {
+        TouchAction startStop = new TouchAction(driver),
+        .tap(element(driver.findElementById("..."), X, Y));
 
     }
     @Given("^user swipe until see <no1 image>$")
-    public void swipe_until() {
-
+        public void swipe_until(String visibleText) {
+            androidDriver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))");
+        }
     }
+
 }

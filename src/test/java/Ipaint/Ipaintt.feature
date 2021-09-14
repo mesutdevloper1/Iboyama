@@ -12,10 +12,10 @@ Feature: Ipaint teknasyon
     When wait "3" second
     And User see <homepage>
     And user swipe up
-    Then user click no1 image
+    Then user click "no1 image"
     And wait "2" second
     When user see "palette"
-    Given user click Greencolor
+    Given user click "Greencolor"
     And user click x=50 y=60 screen
     Then user click "ok symbol"
     And user wait "10" second
