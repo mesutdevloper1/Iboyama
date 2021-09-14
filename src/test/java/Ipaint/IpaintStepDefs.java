@@ -38,7 +38,7 @@ public class IpaintStepDefs {
 
 
 
-    @Given("^user see <page>$")
+    @Given("^user see \"(.*)\"$")
     public void user_see_page(String page) {
         List<MobileElement> elementsOne = (List<MobileElement>) driver.findElementsByAccessibilityId("page");
     }
